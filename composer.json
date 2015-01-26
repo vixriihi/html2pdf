@@ -1,0 +1,21 @@
+{
+    "name": "vixriihi/html2pdf",
+    "description": "php wrapper to wkhtmltopdf",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ville-Matti Riihikoski",
+            "email": "ville-matti.riihikoski@helsinki.fi"
+        }
+    ],
+    "require": {},
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Luomus": "src/"
+        }
+    }
+}
