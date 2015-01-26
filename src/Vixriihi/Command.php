@@ -33,10 +33,10 @@ abstract class Command {
     }
 
     public function setParam($name, $value = null) {
-        $this->setOption($name, $value, '--');
+        $this->setOption($name, $value, self::PREFIX_PARAM);
     }
 
-    public function setOption($name, $value = null, $prefix = '-') {
+    public function setOption($name, $value = null, $prefix = self::PREFIX_FLAG) {
         if ($value === null) {
             $this->params[] = $prefix . $name;
         }
