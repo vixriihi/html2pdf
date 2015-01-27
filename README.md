@@ -10,6 +10,8 @@ This is a php wrapper for [wkhtmltopdf](http://wkhtmltopdf.org/).
 ## Basic usage
 
 ```php
+use Vixriihi\Html2Pdf;
+
 $html = '<h1>Working</h1>';
 
 $html2pdf = new Html2Pdf();
