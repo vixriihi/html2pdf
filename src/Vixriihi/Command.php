@@ -19,10 +19,13 @@ abstract class Command {
             $options = array_intersect_key($options, array_flip($whiteList));
         }
         foreach ($options as $param => $value) {
-            if (empty($value)) {
+            if (strlen($param) === 1) {
+                $this->setFlag($param);
+            } elseif (empty($value) && is_string($value)) {
                 $this->setParam($param);
+            } else {
+                $this->setParam($param, $value);
             }
-            $this->setParam($param, $value);
         }
     }
 
@@ -37,8 +40,14 @@ abstract class Command {
     public function setOption($name, $value = null, $prefix = self::PREFIX_FLAG) {
         if ($value === null) {
             $this->params[] = $prefix . $name;
+            return;
         }
-        $this->params[] = $prefix . $name . '=' . $value;
+        $this->params[] = $prefix . $name . ' ' . $value;
+    }
+
+    public function clearOptions() {
+        $this->params = [];
+        $this->flags  = [];
     }
 
     protected function getParams() {
@@ -46,6 +55,6 @@ abstract class Command {
     }
 
     protected function getFlags() {
-        return join(' ', $this->params);
+        return join(' ', $this->flags);
     }
 }

@@ -29,12 +29,13 @@ class Html2Pdf extends Command {
             2 => array("file", $this->errorLog, "a") // stderr is a file to write to
         );
 
-        $cmd = sprintf('%s %s %s - %s',
+        $cmd = sprintf('%s%s %s - %s',
                 $this->cmd,
                 $this->getFlags(),
                 $this->getParams(),
                 ($this->outputFile !== null ? $this->outputFile : '-')
             );
+        error_log($cmd);
         $pdf = null;
 
         $process = proc_open($cmd, $descriptorSpec, $pipes);
