@@ -33,11 +33,11 @@ class Html2Pdf extends Command {
                 $this->cmd,
                 $this->getFlags(),
                 $this->getParams(),
-                ($this->outputFile == null ? $this->outputFile : '-')
+                ($this->outputFile !== null ? $this->outputFile : '-')
             );
         $pdf = null;
 
-        $process = proc_open($cmd, $descriptorSpec, $pipes, $cwd, $env);
+        $process = proc_open($cmd, $descriptorSpec, $pipes);
         if (is_resource($process)) {
             fwrite($pipes[0], $html);
             fclose($pipes[0]);
