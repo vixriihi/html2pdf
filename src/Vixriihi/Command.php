@@ -12,8 +12,6 @@ abstract class Command {
     protected $flags  = [];
     protected $params = [];
 
-    protected $outputFile = null;
-
     abstract public function execute();
 
     public function setOptionsFromArray(array $options, array $whiteList = null) {
@@ -41,10 +39,6 @@ abstract class Command {
             $this->params[] = $prefix . $name;
         }
         $this->params[] = $prefix . $name . '=' . $value;
-    }
-
-    public function setPdfOutput($file) {
-        $this->outputFile = $file;
     }
 
     protected function getParams() {
